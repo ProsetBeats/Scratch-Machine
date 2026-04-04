@@ -44,7 +44,7 @@ export class ScratchEngine {
       this.gain.connect(this.ctx.destination)
     }
     if (!this.ready) {
-      await this.ctx.audioWorklet.addModule('/worklets/scratchPlaybackProcessor.js')
+      await this.ctx.audioWorklet.addModule(import.meta.env.BASE_URL + 'worklets/scratchPlaybackProcessor.js')
       this.ready = true
     }
     if (!this.node) this.wire()
