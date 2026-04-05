@@ -1,1 +1,0 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/audio/scratchengine.ts","./src/components/cutfader.tsx","./src/components/padsgrid.tsx","./src/components/turntable.tsx","./src/components/waveformview.tsx","./vite.config.ts"],"errors":true,"version":"5.9.3"}

@@ -1,3 +1,7 @@
 node_modules
 dist
 .vscode/*.log
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+obj/
