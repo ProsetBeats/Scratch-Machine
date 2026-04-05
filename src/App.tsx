@@ -7,7 +7,7 @@ import { WaveformView } from './components/WaveformView'
 import './App.css'
 
 const PAD_COUNT = 8
-const CUT_THRESHOLD = 0.55
+const CUT_THRESHOLD = 0.02
 
 function App() {
   const engineRef = useRef<ScratchEngine | null>(null)
