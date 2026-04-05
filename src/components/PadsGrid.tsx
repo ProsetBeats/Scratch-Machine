@@ -1,4 +1,6 @@
-import { useRef } from 'react'
+import { useRef, useCallback } from 'react'
+
+const LONG_PRESS_MS = 500
 
 type PadsGridProps = {
   padNames: string[]
@@ -9,6 +11,30 @@ type PadsGridProps = {
 
 export function PadsGrid({ padNames, activePad, onTrigger, onLoad }: PadsGridProps) {
   const fileInputsRef = useRef<Array<HTMLInputElement | null>>([])
+  const longPressTimers = useRef<Array<ReturnType<typeof setTimeout> | null>>([])
+  const longPressTriggered = useRef<boolean[]>([])
+
+  const handlePointerDown = useCallback((index: number) => {
+    longPressTriggered.current[index] = false
+    longPressTimers.current[index] = setTimeout(() => {
+      longPressTriggered.current[index] = true
+      fileInputsRef.current[index]?.click()
+    }, LONG_PRESS_MS)
+  }, [])
+
+  const handlePointerUp = useCallback((index: number) => {
+    const timer = longPressTimers.current[index]
+    if (timer) {
+      clearTimeout(timer)
+      longPressTimers.current[index] = null
+    }
+  }, [])
+
+  const handleClick = useCallback((index: number) => {
+    if (!longPressTriggered.current[index]) {
+      onTrigger(index)
+    }
+  }, [onTrigger])
 
   return (
     <div className="pads-grid">
@@ -17,7 +43,10 @@ export function PadsGrid({ padNames, activePad, onTrigger, onLoad }: PadsGridPro
           <button
             type="button"
             className={`pad-button ${activePad === index ? 'active' : ''}`}
-            onClick={() => onTrigger(index)}
+            onClick={() => handleClick(index)}
+            onPointerDown={() => handlePointerDown(index)}
+            onPointerUp={() => handlePointerUp(index)}
+            onPointerCancel={() => handlePointerUp(index)}
           >
             PAD {index + 1}
             <span className="pad-name">{name}</span>

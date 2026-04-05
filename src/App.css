@@ -327,6 +327,7 @@ button:disabled {
   .left-console {
     gap: 4px;
     overflow: hidden;
+    justify-content: center;
   }
 
   .settings-toggle {
