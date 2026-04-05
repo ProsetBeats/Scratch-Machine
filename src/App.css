@@ -307,42 +307,95 @@ button:disabled {
 /* ?? Mobile landscape tweaks ?? */
 
 @media (orientation: landscape) and (max-height: 640px) {
+  body {
+    padding: 0;
+    overflow: hidden;
+  }
+
   .scratch-app {
     width: 100vw;
     height: 100dvh;
     max-width: none;
     margin: 0;
-    padding: 8px;
+    padding: 6px;
     border-radius: 0;
-    gap: 8px;
-    grid-template-columns: minmax(260px, 44vw) 1fr;
+    border: none;
+    gap: 6px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
+  .left-console {
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .settings-toggle {
+    display: none;
+  }
+
+  /* Reorder: pads ? waveform ? fader */
+  .pads-section { order: 1; flex: 0 0 auto; }
+  .top-section  { order: 2; flex: 0 0 auto; }
+  .fader-section { order: 3; flex: 0 0 auto; }
+
+  /* Pads: 4 columns × 2 rows */
+  .pads-section {
+    padding: 4px;
+    min-height: 0;
+  }
+
+  .pads-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    height: auto;
+  }
+
+  .pad-cell { gap: 0; }
+
+  .pad-button {
+    min-height: 0;
+    padding: 4px;
+    font-size: 0.68rem;
+    border-radius: 6px;
+  }
+
+  .pad-load { display: none; }
+  .pad-name { font-size: 0.6rem; }
+
+  /* Waveform compact */
+  .top-section { padding: 4px 6px; }
+
   .waveform-canvas {
-    height: 72px;
+    height: 40px;
   }
 
   .track-controls {
-    gap: 6px;
+    gap: 4px;
+    margin-top: 3px;
   }
 
   .track-controls button {
-    padding: 5px 8px;
-    font-size: 0.78rem;
+    padding: 3px 6px;
+    font-size: 0.72rem;
   }
 
-  .pad-button {
-    min-height: 52px;
-  }
+  .track-name { font-size: 0.72rem; }
 
+  /* Fader compact */
+  .fader-section { padding: 4px 8px; }
+  .cut-label { font-size: 0.7rem; }
+  .cut-fader { min-height: 24px; }
+
+  /* Turntable fills the right side */
   .turntable {
-    width: min(72vh, 52vw, 520px);
-    height: min(72vh, 52vw, 520px);
-    border-width: 6px;
+    width: min(84vh, 46vw);
+    height: min(84vh, 46vw);
+    border-width: 4px;
   }
 
   .vinyl-label {
-    width: 96px;
-    height: 96px;
+    width: 56px;
+    height: 56px;
+    border-width: 6px;
   }
 }
