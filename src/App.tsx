@@ -256,8 +256,13 @@ function App() {
                 <button type="button" className="settings-close" onClick={() => setSettingsOpen(false)}>?</button>
               </div>
 
-              <div className="settings-row">
+              <div className="settings-row settings-track">
+                <button type="button" onClick={() => mainTrackInputRef.current?.click()}>Load</button>
+                <button type="button" onClick={() => void togglePlay()} disabled={!isTrackLoaded}>
+                  {isPlaying ? 'Stop' : 'Play'}
+                </button>
                 <button type="button" className="rec-button">REC</button>
+                <span className="track-name">{trackName}</span>
               </div>
 
               <div className="settings-row">

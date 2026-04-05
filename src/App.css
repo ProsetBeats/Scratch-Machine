@@ -130,6 +130,13 @@
   gap: 6px 14px;
 }
 
+.settings-track {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 /* ?? Waveform / track controls ?? */
 
 .top-section {
@@ -384,9 +391,11 @@ button:disabled {
   }
 
   /* Reorder: pads ? waveform ? fader */
-  .pads-section { order: 1; flex: 0 0 auto; }
+  .pads-section { order: 1; flex: 1 1 0; }
   .top-section  { order: 2; flex: 0 0 auto; }
   .fader-section { order: 3; flex: 0 0 auto; }
+
+  .track-controls { display: none; }
 
   /* Pads: 4 columns × 2 rows */
   .pads-section {
@@ -403,7 +412,8 @@ button:disabled {
   .pad-cell { gap: 0; }
 
   .pad-button {
-    min-height: 40px;
+    min-height: 0;
+    height: 100%;
     padding: 4px;
     font-size: 0.68rem;
     border-radius: 6px;
@@ -413,10 +423,10 @@ button:disabled {
   .pad-name { font-size: 0.6rem; }
 
   /* Waveform compact */
-  .top-section { padding: 4px 6px; }
+  .top-section { padding: 3px 6px; }
 
   .waveform-canvas {
-    height: 40px;
+    height: 28px;
   }
 
   .track-controls {
